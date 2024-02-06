@@ -32,7 +32,7 @@ jobs:
           docker build . --file Dockerfile --tag muradimanbayli/a-service:latest
           docker push muradimanbayli/a-service:latest
       - name: Run Coverage
-        run: ./gradlew testCoverage
+        run: ./gradlew test
 
       - name: Add coverage to PR
         id: jacoco
