@@ -12,13 +12,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - name: install gradle
-      run: |
-        sudo apt update
-        sudo apt install -y wget unzip
-        export GRADLE_VERSION=$(curl -s "https://services.gradle.org/versions/latest" | grep -o -P '(?<=version":")[^"]*' | head -n 1)
-        wget -q "https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" -O /tmp/gradle.zip
-        sudo unzip -d /opt/gradle "/tmp/gradle.zip"
-        export PATH=$PATH:/opt/gradle/gradle-${GRADLE_VERSION}/bin
+    - uses: gradle/gradle-build-action@v3
     - name: build jar file
       run: gradle build
