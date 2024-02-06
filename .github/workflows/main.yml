@@ -1,8 +1,6 @@
 name: main_ci_cd
 
 on:
-  push:
-    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
 

@@ -12,4 +12,8 @@ public class AController {
   public String sayHello() {
     return "Hello Service A";
   }
+
+  public int badFunction(int a, int b) {
+    return a+b;
+  }
 }
