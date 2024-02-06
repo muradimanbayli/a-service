@@ -32,4 +32,4 @@ jobs:
       - name: build docker image
         run: |
           docker build . --file Dockerfile --tag muradimanbayli/a-service:latest
-          docker push ymuradimanbayli/a-service:latest
+          docker push muradimanbayli/a-service:latest
