@@ -15,6 +15,10 @@ jobs:
     - name: install gradle
       run: |
         sudo apt update
-        sudo apt install -y gradle
+        sudo apt install -y wget unzip
+        export GRADLE_VERSION=$(curl -s "https://services.gradle.org/versions/latest" | grep -o -P '(?<=version":")[^"]*' | head -n 1)
+        wget -q "https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" -O /tmp/gradle.zip
+        sudo unzip -d /opt/gradle "/tmp/gradle.zip"
+        export PATH=$PATH:/opt/gradle/gradle-${GRADLE_VERSION}/bin
     - name: build jar file
       run: gradle build
