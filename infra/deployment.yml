@@ -13,10 +13,7 @@ spec:
     spec:
       containers:
         - name: backend-a
-          image: 057196872298.dkr.ecr.us-west-2.amazonaws.com/service-a
+          image: 057196872298.dkr.ecr.us-east-2.amazonaws.com/a-service
           resources:
-            limits:
-              memory: "128Mi"
-              cpu: "200m"
           ports:
             - containerPort: 8080
