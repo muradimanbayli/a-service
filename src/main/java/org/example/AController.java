@@ -10,7 +10,7 @@ public class AController {
 
   @GetMapping
   public String sayHello() {
-    return "Hello Service A-B-C-D";
+    return "Hello Service A-B-C-D hey I ma new";
   }
 
   public int badFunction(int a, int b) {
