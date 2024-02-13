@@ -54,7 +54,7 @@ jobs:
         env:
           REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           REPOSITORY: a-service
-          IMAGE_TAG: ${{ github.sha }}
+          IMAGE_TAG: latest
         run: |
           docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
           docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
@@ -63,8 +63,6 @@ jobs:
         run: aws eks update-kubeconfig --name orient
 
       - name: Deploy to EKS
-        env:
-          IMAGE_TAG: ${{ github.sha }}
         run: |
-          kubectl apply -f infra/deployment.yml --set IMAGE_TAG=$IMAGE_TAG
+          kubectl apply -f infra/deployment.yml
           kubectl apply -f infra/service.yml
