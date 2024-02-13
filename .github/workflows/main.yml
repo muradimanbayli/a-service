@@ -1,7 +1,7 @@
 name: Java App deploy to EKS
 on:
   pull_request:
-    branches: [ "main" ]
+    branches: [ "x" ]
 
 jobs:
   build:
