@@ -25,7 +25,6 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      needs :
       - name: JaCoCo Code Coverage Report
         id: jacoco_reporter
         uses: PavanMudigonda/jacoco-reporter@v4.9
