@@ -14,6 +14,7 @@ spec:
       containers:
         - name: backend-a
           image: 057196872298.dkr.ecr.us-east-2.amazonaws.com/a-service
+          imagePullPolicy: Always
           resources:
           ports:
             - containerPort: 8080
