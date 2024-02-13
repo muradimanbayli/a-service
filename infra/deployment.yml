@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
         - name: backend-a
-          image: 057196872298.dkr.ecr.us-east-2.amazonaws.com/a-service
+          image: 057196872298.dkr.ecr.us-east-2.amazonaws.com/a-service:latest
           imagePullPolicy: Always
           resources:
           ports:
