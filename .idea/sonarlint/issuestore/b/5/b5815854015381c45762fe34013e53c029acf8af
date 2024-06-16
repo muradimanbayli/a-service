@@ -1,0 +1,6 @@
+
+b	java:S112!"FDefine and throw a dedicated exception instead of using a generic one.(­åé8¿¶‘‘Ú1
+l
+java:S1128"ORemove this unused import 'org.springframework.beans.factory.annotation.Value'.(ìø›8Üö‰šÚ1
+x
+java:S1128"VRemove this unused import 'org.springframework.security.core.context.SecurityContext'.(ØıŞşÿÿÿÿ8Üö‰šÚ1
