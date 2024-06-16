@@ -19,7 +19,7 @@ import jakarta.servlet.http.HttpServletResponse;
 @Component
 public class SecurityFilter extends OncePerRequestFilter {
   private static final String TOKEN_PREFIX = "Bearer ";
-  private static String jwtSecret = "IamSecret";
+  private static final String JWT_SECRET = "IamSecret";
 
 
   @Override
@@ -34,7 +34,7 @@ public class SecurityFilter extends OncePerRequestFilter {
       }
 
       token = token.replace(TOKEN_PREFIX, "");
-      String userName = Jwts.parser().setSigningKey(jwtSecret.getBytes()).parseClaimsJws(token).getBody().get("username", String.class);
+      String userName = Jwts.parser().setSigningKey(JWT_SECRET.getBytes()).parseClaimsJws(token).getBody().get("username", String.class);
 
       UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userName, null,
           Collections.emptyList());

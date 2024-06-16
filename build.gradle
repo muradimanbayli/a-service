@@ -12,6 +12,10 @@ repositories {
     mavenCentral()
 }
 
+jacoco {
+    toolVersion = "0.8.11"
+}
+
 jar {
     enabled = false
 }
@@ -35,5 +39,6 @@ jacocoTestReport {
     dependsOn test
     reports {
         xml.required = true
+        html.required = false
     }
 }
