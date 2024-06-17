@@ -42,3 +42,12 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: 94063396392c6b3c3bea30c6e4fb7fb6c5d77e54
         run: ./gradlew build sonar --info
+
+      - name: Set up SonarCloud
+        uses: sonarsource/sonarcloud-github-action@v1.10
+        with:
+          args: >
+            -Dsonar.projectKey=a-service
+            -Dsonar.organization=orient-academy
+            -Dsonar.host.url=https://sonarcloud.io
+            -Dsonar.login=94063396392c6b3c3bea30c6e4fb7fb6c5d77e54
