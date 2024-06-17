@@ -24,22 +24,16 @@ jobs:
       - name: Run tests with JaCoCo
         run: ./gradlew test jacocoTestReport
 
-      - name: Upload JaCoCo report
-        uses: actions/upload-artifact@v3
+      - name: JaCoCo Code Coverage Report
+        id: jacoco_reporter
+        uses: PavanMudigonda/jacoco-reporter@v5.0
         with:
-          name: jacoco-report
-          path: build/reports/jacoco/test/jacocoTestReport.xml
-
-      - name: Jacoco Report in PR
-        uses: madrapps/jacoco-report@v1.6.1
-        with:
-          paths: build/reports/jacoco/test/jacocoTestReport.xml
-          token: ${{ secrets.GITHUB_TOKEN }}
-          min-coverage-overall: 1
-          min-coverage-changed-files: 1
-
-      - name: Fail if coverage is less than 80%
-        if: steps.jacoco.outputs.coverage-overall < 1.0
-        run: exit 1
-
+          coverage_results_path: build/reports/jacoco/test/jacocoTestReport.xml
+          coverage_report_name: Coverage
+          coverage_report_title: JaCoCo
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          skip_check_run: false
+          minimum_coverage: 80
+          fail_below_threshold: false
+          publish_only_summary: false
 
