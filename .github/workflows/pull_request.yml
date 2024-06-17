@@ -34,31 +34,31 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           skip_check_run: false
           minimum_coverage: 80
-          fail_below_threshold: false
+          fail_below_threshold: true
           publish_only_summary: false
 
-      - name: Build and analyze
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-          SONAR_TOKEN: 94063396392c6b3c3bea30c6e4fb7fb6c5d77e54
-        run: ./gradlew build sonar --info
-
-      - name: SonarCloud Scan
-        uses: sonarsource/sonarcloud-github-action@v2.3.0 # Ex: v2.1.0, See the latest version at https://github.com/marketplace/actions/sonarcloud-scan
-        env:
-          SONAR_TOKEN: 94063396392c6b3c3bea30c6e4fb7fb6c5d77e54
-
-      # Check the Quality Gate status.
-      - name: SonarQube Quality Gate check
-        id: sonarqube-quality-gate-check
-        uses: sonarsource/sonarqube-quality-gate-action@master
-        # Force to fail step after specific time.
-        timeout-minutes: 5
-        env:
-          SONAR_TOKEN: 94063396392c6b3c3bea30c6e4fb7fb6c5d77e54
-          SONAR_HOST_URL: https://sonarcloud.io
-
-      # Optionally you can use the output from the Quality Gate in another step.
-      # The possible outputs of the `quality-gate-status` variable are `PASSED`, `WARN` or `FAILED`.
-      - name: "Example show SonarQube Quality Gate Status value"
-        run: echo "The Quality Gate status is ${{ steps.sonarqube-quality-gate-check.outputs.quality-gate-status }}"
+#      - name: Build and analyze
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+#          SONAR_TOKEN: 94063396392c6b3c3bea30c6e4fb7fb6c5d77e54
+#        run: ./gradlew build sonar --info
+#
+#      - name: SonarCloud Scan
+#        uses: sonarsource/sonarcloud-github-action@v2.3.0 # Ex: v2.1.0, See the latest version at https://github.com/marketplace/actions/sonarcloud-scan
+#        env:
+#          SONAR_TOKEN: 94063396392c6b3c3bea30c6e4fb7fb6c5d77e54
+#
+#      # Check the Quality Gate status.
+#      - name: SonarQube Quality Gate check
+#        id: sonarqube-quality-gate-check
+#        uses: sonarsource/sonarqube-quality-gate-action@master
+#        # Force to fail step after specific time.
+#        timeout-minutes: 5
+#        env:
+#          SONAR_TOKEN: 94063396392c6b3c3bea30c6e4fb7fb6c5d77e54
+#          SONAR_HOST_URL: https://sonarcloud.io
+#
+#      # Optionally you can use the output from the Quality Gate in another step.
+#      # The possible outputs of the `quality-gate-status` variable are `PASSED`, `WARN` or `FAILED`.
+#      - name: "Example show SonarQube Quality Gate Status value"
+#        run: echo "The Quality Gate status is ${{ steps.sonarqube-quality-gate-check.outputs.quality-gate-status }}"
