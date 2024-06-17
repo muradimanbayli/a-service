@@ -37,7 +37,8 @@ jobs:
           fail_below_threshold: false
           publish_only_summary: false
 
-      - name: SonarCloud Scan
-        uses: sonarsource/sonarcloud-github-action@v2.3.0 # Ex: v2.1.0, See the latest version at https://github.com/marketplace/actions/sonarcloud-scan
+      - name: Build and analyze
         env:
-          SONAR_TOKEN: 848c33bfb66b1494a8a7fbcadd5b2bf484106349
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          SONAR_TOKEN: 94063396392c6b3c3bea30c6e4fb7fb6c5d77e54
+        run: ./gradlew build sonar --info
