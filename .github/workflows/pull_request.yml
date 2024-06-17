@@ -48,17 +48,17 @@ jobs:
         env:
           SONAR_TOKEN: 94063396392c6b3c3bea30c6e4fb7fb6c5d77e54
 
-      - name: Check the Quality Gate status on SonarCloud
-        id: check_quality_gate
-        uses: sonarsource/sonarcloud-quality-gate-action@v2.3.0
-        with:
-          projectKey: orient-academy_a-service
-          organization: orient-academy
-          token: $94063396392c6b3c3bea30c6e4fb7fb6c5d77e54
+      # Check the Quality Gate status.
+      - name: SonarQube Quality Gate check
+        id: sonarqube-quality-gate-check
+        uses: sonarsource/sonarqube-quality-gate-action@master
+        # Force to fail step after specific time.
+        timeout-minutes: 5
+        env:
+          SONAR_TOKEN: 94063396392c6b3c3bea30c6e4fb7fb6c5d77e54
+          SONAR_HOST_URL: https://sonarcloud.io
 
-      - name: echo qualtiy gate result
-        run: echo steps.check_quality_gate.outputs.quality_gate_status
-
-      - name: Fail workflow if quality gate failed
-        if: steps.check_quality_gate.outputs.quality_gate_status != 'OK'
-        run: exit 1
+      # Optionally you can use the output from the Quality Gate in another step.
+      # The possible outputs of the `quality-gate-status` variable are `PASSED`, `WARN` or `FAILED`.
+      - name: "Example show SonarQube Quality Gate Status value"
+        run: echo "The Quality Gate status is ${{ steps.sonarqube-quality-gate-check.outputs.quality-gate-status }}"
