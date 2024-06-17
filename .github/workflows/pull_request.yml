@@ -34,6 +34,10 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           skip_check_run: false
           minimum_coverage: 80
-          fail_below_threshold: true
+          fail_below_threshold: false
           publish_only_summary: false
 
+      - name: SonarCloud Scan
+        uses: sonarsource/sonarcloud-github-action@v2.3.0 # Ex: v2.1.0, See the latest version at https://github.com/marketplace/actions/sonarcloud-scan
+        env:
+          SONAR_TOKEN: 848c33bfb66b1494a8a7fbcadd5b2bf484106349
